@@ -1,0 +1,35 @@
+
+{% set animation_classes = [
+    "fade-up-left", "fade-up-right", "fade-down-left", "fade-down-right",
+    "zoom-in-right", "zoom-in-left", "zoom-out-up", "zoom-out-down"
+] %}
+
+<div class="blog-archive">
+
+    {% if postslist | length == 0 %}
+        <h2>No Recent Posts</h2>
+    {% else %}
+        {%- for post in postslist | reverse -%}
+            {% set aos_animation = animation_classes | randomFromArray %}
+
+            <article class="post" {%- if aos_animation -%} data-aos="{{aos_animation}}" {%- endif -%}>
+                <a href="{{ post.url }}">
+                    <div class="post-header">
+                        <h1 class="post-title">{{ post.data.heading or post.data.title }}</h1>
+                        <p class="post-meta">
+                            <time class="post-date">{{ post.data.date | dateToFormat }}</time>
+                            {# If you want to list the author:
+                            by <span class="post-author" rel="author">{{ post.data.author }}</span>
+                            #}
+                        </p>
+                    </div>
+                    <p class="read-more">
+                        {% fa "fa-share", "fa-solid" %}
+                    </p>
+                </a>
+            </article>
+
+        {%- endfor -%}
+    {% endif %}
+
+</div>

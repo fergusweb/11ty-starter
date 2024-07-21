@@ -1,0 +1,40 @@
+
+  <!--Social Media Display-->
+  <meta property="og:title" content="{{ title }}"/>
+  <meta property="og:description" content="{{ description }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+  <meta property="og:image" content="{{ 'src/assets/images/logo.png' | imgAbsoluteUrl }}"/>
+  <meta property="og:image:secure_url" content="{{ 'src/assets/images/logo.png' | imgAbsoluteUrl }}"/>
+
+  <!--Favicons-->
+  <link rel="icon" type="image/png" sizes="512x512" href="{{ 'src/assets/images/favicon.png' | imgAbsoluteUrl }}">
+  {#
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  #}
+  <meta name="msapplication-TileColor" content="#ff0000">
+  <meta name="theme-color" content="#ffffff">
+
+
+  {#-
+  <!-- Preloads -->
+  <link rel="preload" as="image" href="/assets/svgs/logo-white.svg">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-regular.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-700.woff2" crossorigin>
+  #}
+
+  
+  {#- @TODO: Note that preloads do not work, now that we're optimising images. The URLs aren't the same.  
+  <!-- Preload an image - tag not rendered if preloadImg is blank to stop console errors -->
+  {% if preloadImg %}
+  <link rel="preload" as="image" href="{{ preloadImg }}">
+  {% endif %}
+  {%- if preloadImages -%}
+    {%- for preloadImage in preloadImages -%}
+      <link rel="preload" as="image" href="{{ preloadImage }}">
+    {%- endfor -%}
+  {%- endif -%}
+  #}
+

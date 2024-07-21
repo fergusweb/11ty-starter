@@ -1,0 +1,51 @@
+{
+  "name": "11ty-starter",
+  "version": "1.0.0",
+  "description": "Starter package for 11ty static site generator",
+  "author": {
+    "name": "Anthony",
+    "url": "https://www.ferguson.codes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fergusweb/11ty-starter.git"
+  },
+  "homepage": "https://github.com/fergusweb/11ty-starter",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf public .cache",
+    "build:eleventy": "npx @11ty/eleventy",
+    "build": "cross-env ELEVENTY_ENV=PROD run-p clean build:*",
+    "dev:js": "esbuild src/assets/js/site.js --bundle --outfile=public/assets/site.js --watch --sourcemap",
+    "build:js": "esbuild src/assets/js/site.js --bundle --outfile=public/assets/site.js --minify",
+    "dev:sass": "sass --watch src/assets/sass/:./public/assets/",
+    "build:sass": "sass src/assets/sass/:./public/assets/ --style compressed --no-source-map",
+    "dev:eleventy": "npx @11ty/eleventy --serve",
+    "dev": "cross-env ELEVENTY_ENV=DEV run-p clean dev:*",
+    "debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
+    "benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.0.0-alpha.17",
+    "@11ty/eleventy-img": "5.0.0-beta.7",
+    "@11ty/eleventy-navigation": "^0.3",
+    "@quasibit/eleventy-plugin-sitemap": "^2.2",
+    "cross-env": "^7.0",
+    "del-cli": "^5.0",
+    "eleventy-google-fonts": "^0.1.0",
+    "esbuild": "^0.23",
+    "gently-copy": "^3.2",
+    "npm-run-all": "^4.1",
+    "sass": "^1.77"
+  },
+  "overrides": {
+    "rimraf": "^5",
+    "shelljs": {
+      "glob": "^9"
+    },
+    "flat-cache": {
+      "glob": "^9",
+      "rimraf": "^4"
+    }
+  }
+}

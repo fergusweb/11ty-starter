@@ -1,0 +1,56 @@
+
+        <ul id="nav-expanded" class="nav-list" aria-expanded="false">
+            {% set navPages = collections.all | eleventyNavigation %}
+            {# Loop through all pages with a eleventyNavigation in the frontmatter #}
+            {% for entry in navPages %}
+                {# Define a hasChild variable to make it easier to test what navigation items are have child dropdown pages #}
+                {%- set hasChild = entry.children.length -%}
+                {# Check the frontmatter for hideOnMobile/hideOnDesktop. Form a list of classes to be joined when the item is rendered #}
+                {%- set hideClasses = [] -%}
+                {%- if entry.hideOnMobile -%}
+                    {% set hideClasses = (hideClasses.push("hide-on-mobile"), hideClasses) %}
+                {%- endif -%}
+                {%- if entry.hideOnDesktop -%}
+                    {% set hideClasses = (hideClasses.push("hide-on-desktop"), hideClasses) %}
+                {%- endif -%}
+
+                {# If this page is a dropdown, give it the appropriate classes, icons and accessibility attributes #}
+                <li class="nav-item {% if hasChild %} has-children {% endif %}{{ hideClasses | join(" ") }}">
+
+                    <a 
+                        href="{{ entry.url | absoluteUrl }}" 
+                        class="nav-link {% if entry.url == page.url %} active {% endif %}" 
+                        {% if entry.url == page.url %} aria-current="page" {% endif %}
+                    >
+                        <span>
+                            {{ entry.title or entry.key }}
+                        </span>
+                        {%- if hasChild -%}
+                        <button
+                            aria-expanded="false"
+                            aria-controls="dropdown-{{ entry.key }}"
+                            aria-label="dropdown-{{ entry.key }}"
+                        >
+                            <i class="fa-solid fa-angle-down"></i>
+                        </button>
+                        {% endif %}
+                    </a>
+
+                    {%- if hasChild -%}
+                        {# Dropdowns have another ul/li set up within the parent li, which gets rendered in the same way as a normal link #}
+                        <ul class="nav-drop-ul" id="dropdown-{{ entry.key }}">
+                            {% for child in entry.children %}
+                                <li class="nav-drop-li">
+                                    <a 
+                                        href="{{ child.url | absoluteUrl }}" 
+                                        class="nav-link nav-drop-link {% if child.url == page.url %} active {% endif %}"
+                                    >
+                                        {{ child.title or child.key }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>

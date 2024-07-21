@@ -1,0 +1,12 @@
+{% extends "./default.njk" %}
+
+{% block body %}
+
+  <article class="content">
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
+    {{ content | safe }}
+  </article>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+---
+permalink: .htaccess
+eleventyExcludeFromCollections: true
+layout: ''
+---
+
+ErrorDocument 404 /404.html
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+## Blog redirects
+#RewriteCond %{REQUEST_URI} ^/blog/([0-9]{4})/([0-9]{2})/(.*)/?$ [NC]
+#RewriteRule ^ /blog/%1-%2-%3/ [R=301,L]
+
+## Specific redirects
+Redirect 301 /old-url-here/ {{ site.domain }}/new-url-here/
+
+</IfModule>

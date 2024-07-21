@@ -1,0 +1,16 @@
+{% extends "./default.njk" %}
+
+{% block body %}
+
+  <article class="content">
+    <header>
+      <h1>{{ title }}</h1>
+      <time class="post-date">{{ date | dateToFormat }}</time>
+      {# If you want to list the author:
+      by <span class="post-author" rel="author">{{ author }}</span>
+      #}
+    </header>
+    {{ content | safe }}
+  </article>
+
+{% endblock %}

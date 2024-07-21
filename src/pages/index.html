@@ -1,0 +1,45 @@
+---
+title: Homepage
+permalink: '/'
+
+# If we're doing an automatic menu
+eleventyNavigation:
+  key: Home
+  order: 10
+
+---
+
+
+<p>Homepage content goes here.
+
+
+<p>
+  Example of <code>year</code>:
+  {% year %}
+</p>
+
+<p>
+  Example of a regular <code>img</code> tag:<br>
+  <img src="/assets/images/space.jpg" alt="Space is cool" eleventy:widths="500" />
+</p>
+
+<p>
+  Example of a regular <code>img</code> tag with widths for a responsive image:<br>
+  <img src="/assets/images/space.jpg" alt="Space is cool" eleventy:widths="100, 400" />
+</p>
+
+
+<p>
+  Examples using <code>image</code> shortcode:<br>
+
+  {% image {
+      src:'https://images.unsplash.com/photo-1608178398319-48f814d0750c',
+      alt:"Space is cool"
+  } %}
+
+  {% imageLink {
+      src:'src/assets/images/space.jpg',
+      alt:"Space is cool",
+      sizes: [100, 400]
+  } %}
+</p>

@@ -1,0 +1,11 @@
+{
+    "layout": "post.njk",
+    "eleventyComputed": {
+        "author": "{{ site.author.name }}",
+        "permalink": "/blog/{{ date | blogDateForUrl | slugify}}-{{ title | slugify }}/index.html"
+    },
+    "tags": [
+        "post",
+        "sitemap"
+    ]
+}

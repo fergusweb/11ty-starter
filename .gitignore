@@ -1,0 +1,11 @@
+# Dev environment
+/.vscode
+/node_modules
+.env
+
+# Font Awesome font files are copied in from npm private package, don't want them in the repo
+/src/assets/fonts/fa-*
+
+# Build folders should not be in the repo
+/.cache
+/public

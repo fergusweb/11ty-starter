@@ -20,18 +20,19 @@ git clone git@github.com:fergusweb/11ty-starter.git .
 git remote remove origin
 git remote add upstream git@github.com:fergusweb/11ty-starter.git
 git remote set-url --push upstream DISABLE
-git remote add origin YOUR_ACTUAL_REPO_URL_HERE
+git pull upstream main
+git remote add origin YOUR_NEW_REPO_URL_HERE
 git push
 ```
-
-### Configure the site
-* Make any necessary changes to `config/plugins.js`, `config/filters.js`, and `config/shortcodes.js` for your site
-* Be sure to edit `src/data/site.js` to customise your specifics  *(Very important to update your Live URL)*
 
 ### Run the build tools
 1. Run `npm install` to install all dependencies.
 2. Run `npm run dev` to start the development server.
 3. Run `npm run build` to build a production 'public' folder.
+
+### Configure the site
+* Make any necessary changes to `config/plugins.js`, `config/filters.js`, and `config/shortcodes.js` for your site
+* Be sure to edit `src/data/site.js` to customise your specifics  *(Very important to update your Live URL)*
 
 
 ## Using site.data
